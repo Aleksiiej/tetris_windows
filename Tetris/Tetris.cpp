@@ -118,6 +118,7 @@ int main()
 			}
 			gameStatus = GameStatus::Ongoing;
 			blockBoard.clear();
+			scoreCounter.reset();
 		}
 	}
 	return 0;

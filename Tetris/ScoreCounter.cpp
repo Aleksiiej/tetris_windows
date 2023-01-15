@@ -17,6 +17,12 @@ void ScoreCounter::incrementScore() noexcept
 	text_.setString("Score: " + to_string(score_));
 }
 
+void ScoreCounter::reset() noexcept
+{
+	score_ = 0;
+	text_.setString("Score: " + to_string(score_));
+}
+
 void ScoreCounter::draw(RenderTarget& target, RenderStates states) const noexcept
 {
 	target.draw(text_, states);

@@ -14,6 +14,7 @@ public:
 	~ScoreCounter() = default;
 
 	void incrementScore() noexcept;
+	void reset() noexcept;
 
 private:
 	short int score_;
