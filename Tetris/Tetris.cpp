@@ -33,11 +33,6 @@ int main()
 	{
 		window.clear(Color::White);
 
-		if (ptrToBlock->checkIfLost())
-		{
-			gameStatus = GameStatus::Lost;
-		}
-
 		if (gameStatus == GameStatus::Ongoing)
 		{
 			while (window.pollEvent(event))
@@ -95,6 +90,10 @@ int main()
 			{
 				ptrToBlock.reset(nullptr);
 				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard));
+				if (ptrToBlock->checkIfLost())
+				{
+					gameStatus = GameStatus::Lost;
+				}
 			}
 		}
 		else if (gameStatus == GameStatus::Lost)
