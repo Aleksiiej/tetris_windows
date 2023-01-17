@@ -33,10 +33,9 @@ int main()
 	{
 		window.clear(Color::White);
 
-		if (!ptrToBlock->checkIfLost())
+		if (ptrToBlock->checkIfLost())
 		{
 			gameStatus = GameStatus::Lost;
-			while (window.pollEvent(event));
 		}
 
 		if (gameStatus == GameStatus::Ongoing)
@@ -109,7 +108,7 @@ int main()
 				if (event.type == Event::EventType::Closed or event.key.code == Keyboard::Escape)
 				{
 					window.close();
-					break;
+					return 0;
 				}
 				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Space)
 				{

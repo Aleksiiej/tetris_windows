@@ -13,17 +13,6 @@ Block1::Block1(BlockBoard& blockBoardRef) noexcept
 	blockArray_.at(3).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, 2 * GRID);
 }
 
-const bool Block1::checkIfLost() const noexcept
-{
-	if (blockArray_.at(0).getPosition().y == GRID
-		and (blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2)) == Color::Red
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3)) == Color::Red))
-	{
-		return false;
-	}
-	return true;
-}
-
 const bool Block1::isFallingPossible() noexcept
 {
 	if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS and blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS)

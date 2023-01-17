@@ -12,19 +12,6 @@ Block5::Block5(BlockBoard& blockBoardRef) noexcept
 	blockArray_.at(3).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, 2 * GRID);
 }
 
-const bool Block5::checkIfLost() const noexcept
-{
-	if (blockArray_.at(0).getPosition().y == GRID
-		and (blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0)) == Color::Red
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1)) == Color::Red
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(3)) == Color::Red
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3)) == Color::Red))
-	{
-		return false;
-	}
-	return true;
-}
-
 const bool Block5::isFallingPossible() noexcept
 {
 	if (currentPosition_ == FourBlockPositions::FlatOnTop)
@@ -194,7 +181,7 @@ const bool Block5::isRotationPossible() const noexcept
 		or blockArray_.at(3).getPosition().y == GRID * NUMBER_OF_ROWS + GRID
 		or blockArray_.at(0).getPosition().y == GRID)
 	{
-     		return false;
+		return false;
 	}
 	else if (currentPosition_ == FourBlockPositions::FlatOnTop)
 	{

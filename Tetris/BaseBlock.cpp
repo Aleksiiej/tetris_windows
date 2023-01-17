@@ -23,14 +23,32 @@ void BaseBlock::moveLeft() noexcept
 	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
 }
 
-const bool BaseBlock::checkColisionWithLeftBand(const array<RectangleShape, 4>& blockArray_)
+const bool BaseBlock::checkColisionWithLeftBand(const array<RectangleShape, 4>& blockArray_) // TODO: Remove if not needed
 {
 	return std::any_of(begin(blockArray_), end(blockArray_), [](auto& block) { return block.getPosition().x <= GRID; });
 }
 
-const bool BaseBlock::checkColisionWithRightBand(const array<RectangleShape, 4>& blockArray_)
+const bool BaseBlock::checkColisionWithRightBand(const array<RectangleShape, 4>& blockArray_) // TODO: Remove if not needed
 {
 	return std::any_of(begin(blockArray_), end(blockArray_), [](auto& block) { return block.getPosition().x >= GRID * NUMBER_OF_COLUMNS; });
+}
+
+const bool BaseBlock::checkIfLost() const noexcept
+{
+	bool isAtTopLine = false;
+	bool isOccupied = false;
+	for (uint8_t i = 0; i < 4; i++)
+	{
+		if (blockArray_.at(i).getPosition().y == GRID)
+		{
+			isAtTopLine = true;
+		}
+		if (blockBoardRef_.getBoardArrayRef().at(gridToX(i)).at(gridToY(i)) != Color::White)
+		{
+			isOccupied = true;
+		}
+	}
+	return(isAtTopLine and isOccupied);
 }
 
 void BaseBlock::setColor(const Color& color) noexcept
