@@ -15,6 +15,7 @@ using namespace sf;
 using namespace std;
 
 void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, RenderWindow& window) noexcept;
+void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
 
 int main()
 {
@@ -89,6 +90,10 @@ int main()
 			{
 				ptrToBlock.reset(nullptr);
 				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard));
+				for (const auto& block : ptrToBlock->getBlockArrayRef())
+				{
+					window.draw(block);
+				}
 				if (ptrToBlock->checkIfLost())
 				{
 					gameStatus = GameStatus::Lost;
@@ -112,9 +117,7 @@ int main()
 					break;
 				}
 			}
-			gameStatus = GameStatus::Ongoing;
-			blockBoard.clear();
-			scoreCounter.reset();
+			resetGame(gameStatus, blockBoard, scoreCounter);
 		}
 	}
 	return 0;
@@ -136,4 +139,11 @@ void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& 
 			window.draw(singleField);
 		}
 	}
+}
+
+void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter)
+{
+	gameStatus = GameStatus::Ongoing;
+	blockBoard.clear();
+	scoreCounter.reset();
 }
