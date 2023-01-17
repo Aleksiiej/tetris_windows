@@ -79,7 +79,6 @@ int main()
 			{
 				window.draw(block);
 			}
-			//window.draw(scoreCounter);
 			window.display();
 			sleep(milliseconds(GAME_SPEED));
 			if (ptrToBlock->isFallingPossible())
@@ -99,7 +98,6 @@ int main()
 		else if (gameStatus == GameStatus::Lost)
 		{
 			drawBoard(band, blockBoard, scoreCounter, window);
-			//window.draw(scoreCounter);
 			window.draw(endgameText);
 			window.display();
 			while (window.waitEvent(event))
