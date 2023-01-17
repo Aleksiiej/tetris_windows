@@ -90,10 +90,6 @@ int main()
 			{
 				ptrToBlock.reset(nullptr);
 				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard));
-				for (const auto& block : ptrToBlock->getBlockArrayRef())
-				{
-					window.draw(block);
-				}
 				if (ptrToBlock->checkIfLost())
 				{
 					gameStatus = GameStatus::Lost;
