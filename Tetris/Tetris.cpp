@@ -14,7 +14,7 @@
 using namespace sf;
 using namespace std;
 
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, RenderWindow& window) noexcept;
+void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, RenderWindow& window) noexcept;
 
 int main()
 {
@@ -74,12 +74,12 @@ int main()
 			}
 
 			blockBoard.handleFilledRows();
-			drawBoard(band, blockBoard, window);
+			drawBoard(band, blockBoard, scoreCounter, window);
 			for (const auto& block : ptrToBlock->getBlockArrayRef())
 			{
 				window.draw(block);
 			}
-			window.draw(scoreCounter);
+			//window.draw(scoreCounter);
 			window.display();
 			sleep(milliseconds(GAME_SPEED));
 			if (ptrToBlock->isFallingPossible())
@@ -98,8 +98,8 @@ int main()
 		}
 		else if (gameStatus == GameStatus::Lost)
 		{
-			drawBoard(band, blockBoard, window);
-			window.draw(scoreCounter);
+			drawBoard(band, blockBoard, scoreCounter, window);
+			//window.draw(scoreCounter);
 			window.draw(endgameText);
 			window.display();
 			while (window.waitEvent(event))
@@ -122,9 +122,10 @@ int main()
 	return 0;
 }
 
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, RenderWindow& window) noexcept
+void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, RenderWindow& window) noexcept
 {
 	window.draw(band);
+	window.draw(scoreCounter);
 
 	RectangleShape singleField; // TODO: figure out how to use smaller class than RectangleShape
 	singleField.setSize(Vector2f{ GRID, GRID });
