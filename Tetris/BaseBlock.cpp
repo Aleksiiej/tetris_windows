@@ -23,6 +23,16 @@ void BaseBlock::moveLeft() noexcept
 	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
 }
 
+const bool BaseBlock::checkColisionWithLeftBand(const array<RectangleShape, 4>& blockArray_)
+{
+	return std::any_of(begin(blockArray_), end(blockArray_), [](auto& block) { return block.getPosition().x <= GRID; });
+}
+
+const bool BaseBlock::checkColisionWithRightBand(const array<RectangleShape, 4>& blockArray_)
+{
+	return std::any_of(begin(blockArray_), end(blockArray_), [](auto& block) { return block.getPosition().x >= GRID * NUMBER_OF_COLUMNS; });
+}
+
 void BaseBlock::setColor(const Color& color) noexcept
 {
 	for_each(begin(blockArray_), end(blockArray_), [&](auto& block) { block.setFillColor(color); });

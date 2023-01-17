@@ -22,6 +22,8 @@ public:
 	void moveRight() noexcept;
 	void moveLeft() noexcept;
 
+	virtual const bool checkColisionWithLeftBand(const array<RectangleShape, 4>& blockArray_);
+	virtual const bool checkColisionWithRightBand(const array<RectangleShape, 4>& blockArray_);
 	virtual const bool checkIfLost() const noexcept { return false; }
 	virtual const bool isFallingPossible() noexcept { return false; }
 	virtual const bool isMoveRightPossible() const noexcept { return false; }
