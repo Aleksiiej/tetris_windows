@@ -75,7 +75,7 @@ int main()
 				else if (event.type == Event::EventType::Closed)
 				{
 					window.close();
-					break;
+					return 0;
 				}
 			}
 
