@@ -16,12 +16,8 @@ const bool Block4::isFallingPossible() noexcept
 {
 	if (currentPosition_ == FourBlockPositions::FlatOnTop)
 	{
-		if (blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		else if (blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
+		if (blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
 		{
@@ -32,12 +28,8 @@ const bool Block4::isFallingPossible() noexcept
 	}
 	else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
 	{
-		if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		else if (blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
+		if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
 		{
 			setColorsInBlockBoard();
@@ -47,12 +39,8 @@ const bool Block4::isFallingPossible() noexcept
 	}
 	else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
 	{
-		if (blockArray_.at(1).getPosition().y >= GRID * NUMBER_OF_ROWS)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		else if (blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
+		if (blockArray_.at(1).getPosition().y >= GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White)
 		{
@@ -63,12 +51,8 @@ const bool Block4::isFallingPossible() noexcept
 	}
 	else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
 	{
-		if (blockArray_.at(0).getPosition().y >= GRID * NUMBER_OF_ROWS)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		else if (blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
+		if (blockArray_.at(0).getPosition().y >= GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
 		{
 			setColorsInBlockBoard();

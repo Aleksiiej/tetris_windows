@@ -15,12 +15,8 @@ Block1::Block1(BlockBoard& blockBoardRef) noexcept
 
 const bool Block1::isFallingPossible() noexcept
 {
-	if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS and blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS)
-	{
-		setColorsInBlockBoard();
-		return false;
-	}
-	else if (blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
+	if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS and blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS
+		or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
 		or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
 	{
 		setColorsInBlockBoard();
