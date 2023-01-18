@@ -38,39 +38,44 @@ int main()
 		{
 			while (window.pollEvent(event))
 			{
-				if (event.type == Event::EventType::Closed)
+				if (event.type == Event::EventType::KeyPressed)
+				{
+					switch (event.key.code)
+					{
+					case Keyboard::Right:
+						if (ptrToBlock->isMoveRightPossible())
+						{
+							ptrToBlock->moveRight();
+						}
+						break;
+
+					case Keyboard::Left:
+						if (ptrToBlock->isMoveLeftPossible())
+						{
+							ptrToBlock->moveLeft();
+						}
+						break;
+
+					case Keyboard::Down:
+						while (ptrToBlock->isFallingPossible())
+						{
+							while (window.pollEvent(event));
+							ptrToBlock->fall();
+						}
+						break;
+
+					case Keyboard::Space:
+						if (ptrToBlock->isRotationPossible())
+						{
+							ptrToBlock->rotate();
+						}
+						break;
+					}
+				}
+				else if (event.type == Event::EventType::Closed)
 				{
 					window.close();
 					break;
-				}
-				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Right)
-				{
-					if (ptrToBlock->isMoveRightPossible())
-					{
-						ptrToBlock->moveRight();
-					}
-				}
-				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Left)
-				{
-					if (ptrToBlock->isMoveLeftPossible())
-					{
-						ptrToBlock->moveLeft();
-					}
-				}
-				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Down)
-				{
-					while (ptrToBlock->isFallingPossible())
-					{
-						while (window.pollEvent(event));
-						ptrToBlock->fall();
-					}
-				}
-				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Space)
-				{
-					if (ptrToBlock->isRotationPossible())
-					{
-						ptrToBlock->rotate();
-					}
 				}
 			}
 
