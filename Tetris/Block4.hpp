@@ -18,7 +18,6 @@ public:
 	Block4(const Block4&& other) = delete;
 	~Block4() = default;
 
-	const bool checkIfLost() const noexcept;
 	const bool isFallingPossible() noexcept;
 	const bool isMoveRightPossible() const noexcept;
 	const bool isMoveLeftPossible() const noexcept;
