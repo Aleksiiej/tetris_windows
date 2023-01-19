@@ -14,8 +14,9 @@ Block5::Block5(BlockBoard& blockBoardRef) noexcept
 
 const bool Block5::isFallingPossible() noexcept
 {
-	if (currentPosition_ == FourBlockPositions::FlatOnTop)
+	switch (currentPosition_)
 	{
+	case FourBlockPositions::FlatOnTop:
 		if (blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
@@ -25,9 +26,8 @@ const bool Block5::isFallingPossible() noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
-	{
+
+	case FourBlockPositions::FlatOnRigth:
 		if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
@@ -36,9 +36,8 @@ const bool Block5::isFallingPossible() noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
-	{
+
+	case FourBlockPositions::FlatOnBottom:
 		if (blockArray_.at(1).getPosition().y >= GRID * NUMBER_OF_ROWS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
@@ -48,9 +47,8 @@ const bool Block5::isFallingPossible() noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
-	{
+
+	case FourBlockPositions::FlatOnLeft:
 		if (blockArray_.at(0).getPosition().y >= GRID * NUMBER_OF_ROWS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
@@ -65,8 +63,9 @@ const bool Block5::isFallingPossible() noexcept
 
 const bool Block5::isMoveRightPossible() const noexcept
 {
-	if (currentPosition_ == FourBlockPositions::FlatOnTop)
+	switch (currentPosition_)
 	{
+	case FourBlockPositions::FlatOnTop:
 		if (blockArray_.at(2).getPosition().x >= GRID * NUMBER_OF_COLUMNS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(2) + 1).at(gridToY(2)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) + 1).at(gridToY(3)) != Color::White)
@@ -74,9 +73,8 @@ const bool Block5::isMoveRightPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
-	{
+
+	case FourBlockPositions::FlatOnRigth:
 		if (blockArray_.at(1).getPosition().x >= GRID * NUMBER_OF_COLUMNS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) + 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) != Color::White
@@ -85,9 +83,8 @@ const bool Block5::isMoveRightPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
-	{
+
+	case FourBlockPositions::FlatOnBottom:
 		if (blockArray_.at(0).getPosition().x >= GRID * NUMBER_OF_COLUMNS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) + 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) + 1).at(gridToY(3)) != Color::White)
@@ -95,9 +92,8 @@ const bool Block5::isMoveRightPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
-	{
+
+	case FourBlockPositions::FlatOnLeft:
 		if (blockArray_.at(3).getPosition().x >= GRID * NUMBER_OF_COLUMNS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) + 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) != Color::White
@@ -112,8 +108,9 @@ const bool Block5::isMoveRightPossible() const noexcept
 
 const bool Block5::isMoveLeftPossible() const noexcept
 {
-	if (currentPosition_ == FourBlockPositions::FlatOnTop)
+	switch (currentPosition_)
 	{
+	case FourBlockPositions::FlatOnTop:
 		if (blockArray_.at(0).getPosition().x <= GRID
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) - 1).at(gridToY(3)) != Color::White)
@@ -121,9 +118,8 @@ const bool Block5::isMoveLeftPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
-	{
+
+	case FourBlockPositions::FlatOnRigth:
 		if (blockArray_.at(3).getPosition().x <= GRID
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) != Color::White
@@ -132,9 +128,8 @@ const bool Block5::isMoveLeftPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
-	{
+
+	case FourBlockPositions::FlatOnBottom:
 		if (blockArray_.at(2).getPosition().x <= GRID
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(2) - 1).at(gridToY(2)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) - 1).at(gridToY(3)) != Color::White)
@@ -142,9 +137,8 @@ const bool Block5::isMoveLeftPossible() const noexcept
 			return false;
 		}
 		return true;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
-	{
+
+	case FourBlockPositions::FlatOnLeft:
 		if (blockArray_.at(1).getPosition().x <= GRID
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(0)) != Color::White
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) != Color::White
@@ -167,8 +161,9 @@ const bool Block5::isRotationPossible() const noexcept
 	{
 		return false;
 	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnTop)
+	switch (currentPosition_)
 	{
+	case FourBlockPositions::FlatOnTop:
 		if (blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == Color::White
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1) + 1) == Color::White
@@ -176,10 +171,9 @@ const bool Block5::isRotationPossible() const noexcept
 		{
 			return true;
 		}
-		else return false;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
-	{
+		return false;
+
+	case FourBlockPositions::FlatOnRigth:
 		if (blockArray_.at(1).getPosition().x > GRID
 			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == Color::White
@@ -188,20 +182,18 @@ const bool Block5::isRotationPossible() const noexcept
 		{
 			return true;
 		}
-		else return false;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
-	{
+		return false;
+
+	case FourBlockPositions::FlatOnBottom:
 		if (blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == Color::White
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == Color::White
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1) - 1) == Color::White)
 		{
 			return true;
 		}
-		else return false;
-	}
-	else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
-	{
+		return false;
+
+	case FourBlockPositions::FlatOnLeft:
 		if (blockArray_.at(1).getPosition().x > GRID
 			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS
 			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == Color::White
@@ -210,7 +202,7 @@ const bool Block5::isRotationPossible() const noexcept
 		{
 			return true;
 		}
-		else return false;
+		return false;
 	}
 	return false;
 }
@@ -219,33 +211,35 @@ void Block5::rotate() noexcept
 {
 	if (isRotationPossible())
 	{
-		if (currentPosition_ == FourBlockPositions::FlatOnTop)
+		switch (currentPosition_)
 		{
+		case FourBlockPositions::FlatOnTop:
 			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x + GRID, blockArray_.at(0).getPosition().y - GRID);
 			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x - GRID, blockArray_.at(2).getPosition().y + GRID);
 			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x - 2 * GRID, blockArray_.at(3).getPosition().y);
 			currentPosition_ = FourBlockPositions::FlatOnRigth;
-		}
-		else if (currentPosition_ == FourBlockPositions::FlatOnRigth)
-		{
+			break;
+
+		case FourBlockPositions::FlatOnRigth:
 			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x + GRID, blockArray_.at(0).getPosition().y + GRID);
 			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x - GRID, blockArray_.at(2).getPosition().y - GRID);
 			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x, blockArray_.at(3).getPosition().y - 2 * GRID);
 			currentPosition_ = FourBlockPositions::FlatOnBottom;
-		}
-		else if (currentPosition_ == FourBlockPositions::FlatOnBottom)
-		{
+			break;
+
+		case FourBlockPositions::FlatOnBottom:
 			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x - GRID, blockArray_.at(0).getPosition().y + GRID);
 			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x + GRID, blockArray_.at(2).getPosition().y - GRID);
 			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x + 2 * GRID, blockArray_.at(3).getPosition().y);
 			currentPosition_ = FourBlockPositions::FlatOnLeft;
-		}
-		else if (currentPosition_ == FourBlockPositions::FlatOnLeft)
-		{
+			break;
+
+		case FourBlockPositions::FlatOnLeft:
 			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x - GRID, blockArray_.at(0).getPosition().y - GRID);
 			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x + GRID, blockArray_.at(2).getPosition().y + GRID);
 			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x, blockArray_.at(3).getPosition().y + 2 * GRID);
 			currentPosition_ = FourBlockPositions::FlatOnTop;
+			break;
 		}
 	}
 }
