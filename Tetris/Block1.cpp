@@ -25,28 +25,6 @@ const bool Block1::isFallingPossible() noexcept
 	return true;
 }
 
-const bool Block1::isMoveRightPossible() const noexcept
-{
-	if (blockArray_.at(1).getPosition().x >= GRID * NUMBER_OF_COLUMNS
-		or blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) != Color::White
-		or blockBoardRef_.getBoardArrayRef().at(gridToX(3) + 1).at(gridToY(3)) != Color::White)
-	{
-		return false;
-	}
-	return true;
-}
-
-const bool Block1::isMoveLeftPossible() const noexcept
-{
-	if (blockArray_.at(0).getPosition().x <= GRID
-		or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(0)) != Color::White
-		or blockBoardRef_.getBoardArrayRef().at(gridToX(2) - 1).at(gridToY(2)) != Color::White)
-	{
-		return false;
-	}
-	return true;
-}
-
 const bool Block1::isRotationPossible() const noexcept
 {
 	return false;

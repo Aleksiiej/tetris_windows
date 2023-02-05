@@ -19,8 +19,6 @@ public:
 	~Block4() = default;
 
 	const bool isFallingPossible() noexcept;
-	const bool isMoveRightPossible() const noexcept;
-	const bool isMoveLeftPossible() const noexcept;
 	const bool isRotationPossible() const noexcept;
 	void rotate() noexcept;
 

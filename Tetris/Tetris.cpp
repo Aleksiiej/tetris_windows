@@ -50,7 +50,7 @@ int main()
 						break;
 
 					case Keyboard::Left:
-						if (ptrToBlock->isMoveLeftPossible())
+						if (ptrToBlock->BaseBlock::isMoveLeftPossible())
 						{
 							ptrToBlock->moveLeft();
 						}

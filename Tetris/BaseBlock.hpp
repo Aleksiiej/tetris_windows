@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <array>
+#include <utility>
 
 using namespace sf;
 using namespace std;
@@ -21,24 +22,23 @@ public:
 	void fall() noexcept;
 	void moveRight() noexcept;
 	void moveLeft() noexcept;
+	virtual void rotate() noexcept {}
 
-	virtual const bool checkColisionWithLeftBand(const array<RectangleShape, 4>& blockArray_);
-	virtual const bool checkColisionWithRightBand(const array<RectangleShape, 4>& blockArray_);
 	const bool checkIfLost() const noexcept;
 	virtual const bool isFallingPossible() noexcept { return false; }
-	virtual const bool isMoveRightPossible() const noexcept { return false; }
-	virtual const bool isMoveLeftPossible() const noexcept { return false; }
+	const bool isMoveRightPossible() const noexcept;
+	const bool isMoveLeftPossible() const noexcept;
 	virtual const bool isRotationPossible() const noexcept { return false; }
-	virtual void rotate() noexcept {}
 
 	void setColor(const Color& color) noexcept;
 	void setColorsInBlockBoard() const noexcept;
 	const array<RectangleShape, 4>& getBlockArrayRef() const noexcept;
+	vector<pair<float, float>> getCoords() const noexcept;
 
 protected:
 	array<RectangleShape, 4> blockArray_;
 	BlockBoard& blockBoardRef_;
 
-	const uint8_t gridToX(const uint8_t& blockNumber) const noexcept;
-	const uint8_t gridToY(const uint8_t& blockNumber) const noexcept;
+	const int gridToX(const float& blockNumber) const noexcept;
+	const int gridToY(const float& blockNumber) const noexcept;
 };

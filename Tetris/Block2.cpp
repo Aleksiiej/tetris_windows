@@ -40,58 +40,6 @@ const bool Block2::isFallingPossible() noexcept
 	else return false;
 }
 
-const bool Block2::isMoveRightPossible() const noexcept
-{
-	if (currentPosition_ == TwoBlockPositions::Horizontal)
-	{
-		if (blockArray_.at(3).getPosition().x >= GRID * NUMBER_OF_COLUMNS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) + 1).at(gridToY(3)) != Color::White)
-		{
-			return false;
-		}
-		return true;
-	}
-	else if (currentPosition_ == TwoBlockPositions::Vertical)
-	{
-		if (blockArray_.at(3).getPosition().x >= GRID * NUMBER_OF_COLUMNS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) + 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(2) + 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) + 1).at(gridToY(3)) != Color::White)
-		{
-			return false;
-		}
-		return true;
-	}
-	else return false;
-}
-
-const bool Block2::isMoveLeftPossible() const noexcept
-{
-	if (currentPosition_ == TwoBlockPositions::Horizontal)
-	{
-		if (blockArray_.at(0).getPosition().x <= GRID
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(0)) != Color::White)
-		{
-			return false;
-		}
-		return true;
-	}
-	else if (currentPosition_ == TwoBlockPositions::Vertical)
-	{
-		if (blockArray_.at(3).getPosition().x <= GRID
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0) - 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(2) - 1).at(gridToY(3)) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3) - 1).at(gridToY(3)) != Color::White)
-		{
-			return false;
-		}
-		return true;
-	}
-	else return false;
-}
-
 const bool Block2::isRotationPossible() const noexcept
 {
 	if (blockArray_.at(0).getPosition().y == GRID
