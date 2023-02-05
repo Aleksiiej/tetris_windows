@@ -18,7 +18,6 @@ public:
 	Block3(const Block3&& other) = delete;
 	~Block3() = default;
 
-	const bool isFallingPossible() noexcept;
 	const bool isRotationPossible() const noexcept;
 	void rotate() noexcept;
 

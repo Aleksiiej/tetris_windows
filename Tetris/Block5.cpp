@@ -12,55 +12,6 @@ Block5::Block5(BlockBoard& blockBoardRef) noexcept
 	blockArray_.at(3).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, 2 * GRID);
 }
 
-const bool Block5::isFallingPossible() noexcept
-{
-	switch (currentPosition_)
-	{
-	case FourBlockPositions::FlatOnTop:
-		if (blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-
-	case FourBlockPositions::FlatOnRigth:
-		if (blockArray_.at(2).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-
-	case FourBlockPositions::FlatOnBottom:
-		if (blockArray_.at(1).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(2)).at(gridToY(2) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-
-	case FourBlockPositions::FlatOnLeft:
-		if (blockArray_.at(0).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-	}
-	return false;
-}
-
 const bool Block5::isRotationPossible() const noexcept
 {
 	if (blockArray_.at(0).getPosition().y >= GRID * NUMBER_OF_ROWS + GRID

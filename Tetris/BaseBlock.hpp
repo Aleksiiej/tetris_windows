@@ -25,7 +25,7 @@ public:
 	virtual void rotate() noexcept {}
 
 	const bool checkIfLost() const noexcept;
-	virtual const bool isFallingPossible() noexcept { return false; }
+	const bool isFallingPossible() const noexcept;
 	const bool isMoveRightPossible() const noexcept;
 	const bool isMoveLeftPossible() const noexcept;
 	virtual const bool isRotationPossible() const noexcept { return false; }

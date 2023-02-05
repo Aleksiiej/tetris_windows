@@ -12,34 +12,6 @@ Block6::Block6(BlockBoard& blockBoardRef) noexcept
 	blockArray_.at(3).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, GRID);
 }
 
-const bool Block6::isFallingPossible() noexcept
-{
-	if (currentPosition_ == TwoBlockPositions::Horizontal)
-	{
-		if (blockArray_.at(1).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(0)).at(gridToY(0) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-	}
-	else if (currentPosition_ == TwoBlockPositions::Vertical)
-	{
-		if (blockArray_.at(3).getPosition().y >= GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) != Color::White
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(3)).at(gridToY(3) + 1) != Color::White)
-		{
-			setColorsInBlockBoard();
-			return false;
-		}
-		return true;
-	}
-	return false;
-}
-
 const bool Block6::isRotationPossible() const noexcept
 {
 	if (currentPosition_ == TwoBlockPositions::Horizontal)
