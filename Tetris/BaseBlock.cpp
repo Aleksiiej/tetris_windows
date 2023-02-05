@@ -10,17 +10,26 @@ BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockB
 
 void BaseBlock::fall() noexcept
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+	if (isFallingPossible())
+	{
+		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+	}
 }
 
 void BaseBlock::moveRight() noexcept
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(GRID, 0); });
+	if (isMoveRightPossible())
+	{
+		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(GRID, 0); });
+	}
 }
 
 void BaseBlock::moveLeft() noexcept
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
+	if (isMoveLeftPossible())
+	{
+		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
+	}
 }
 
 const bool BaseBlock::isFallingPossible() const noexcept

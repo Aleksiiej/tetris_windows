@@ -43,17 +43,11 @@ int main()
 					switch (event.key.code)
 					{
 					case Keyboard::Right:
-						if (ptrToBlock->isMoveRightPossible())
-						{
-							ptrToBlock->moveRight();
-						}
+						ptrToBlock->moveRight();
 						break;
 
 					case Keyboard::Left:
-						if (ptrToBlock->BaseBlock::isMoveLeftPossible())
-						{
-							ptrToBlock->moveLeft();
-						}
+						ptrToBlock->moveLeft();
 						break;
 
 					case Keyboard::Down:
@@ -65,10 +59,7 @@ int main()
 						break;
 
 					case Keyboard::Space:
-						if (ptrToBlock->isRotationPossible())
-						{
-							ptrToBlock->rotate();
-						}
+						ptrToBlock->rotate();
 						break;
 					}
 				}
