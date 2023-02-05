@@ -28,7 +28,8 @@ int main()
 	const EndgameText endgameText;
 	ScoreCounter scoreCounter;
 	BlockBoard blockBoard{ scoreCounter };
-	unique_ptr<BaseBlock> ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard));
+	random_device rd;
+	unique_ptr<BaseBlock> ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard, rd));
 
 	while (true)
 	{
@@ -85,7 +86,7 @@ int main()
 			else
 			{
 				ptrToBlock.reset(nullptr);
-				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard));
+				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard, rd));
 				if (ptrToBlock->checkIfLost())
 				{
 					gameStatus = GameStatus::Lost;

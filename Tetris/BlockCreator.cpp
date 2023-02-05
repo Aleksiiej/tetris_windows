@@ -8,12 +8,12 @@
 #include "Block7.hpp"
 #include "BlockBoard.hpp"
 
-unique_ptr<BaseBlock> BlockCreator::createRandomBlock(BlockBoard& blockBoardRef_) noexcept
+unique_ptr<BaseBlock> BlockCreator::createRandomBlock(BlockBoard& blockBoardRef_, random_device& rd) noexcept
 {
 	unique_ptr<BaseBlock> createdBlock;
 	uint8_t randomNumber;
 
-	random_device rd;
+	//random_device rd;
 	mt19937 rng(rd());
 	uniform_int_distribution<> distrib1(0, 6);
 	randomNumber = distrib1(rng);

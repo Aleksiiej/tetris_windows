@@ -18,6 +18,6 @@ public:
 	BlockCreator(const BlockCreator&& other) = delete;
 	~BlockCreator() = default;
 
-	static unique_ptr<BaseBlock> createRandomBlock(BlockBoard& blockBoardRef_) noexcept;
+	static unique_ptr<BaseBlock> createRandomBlock(BlockBoard& blockBoardRef_, random_device& rd) noexcept;
 };
 
