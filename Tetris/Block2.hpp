@@ -1,9 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include "BaseBlock.hpp"
-#include "GlobalValues.hpp"
 
 using namespace sf;
 using namespace std;

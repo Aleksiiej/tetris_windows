@@ -1,5 +1,3 @@
-#include <vector>
-
 #include "BlockBoard.hpp"
 
 BlockBoard::BlockBoard(ScoreCounter& scoreCounter) noexcept : scoreCounter_(scoreCounter)

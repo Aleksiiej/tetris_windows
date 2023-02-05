@@ -1,8 +1,3 @@
-#include <memory>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <vector>
-
 #include "Band.hpp"
 #include "BlockBoard.hpp"
 #include "BlockCreator.hpp"
@@ -22,6 +17,7 @@ int main()
 	RenderWindow window{ VideoMode{800, 600}, "Tetris" };
 	window.setFramerateLimit(60);
 	Event event;
+	Time micro = milliseconds(GAME_SPEED);
 
 	GameStatus gameStatus{ GameStatus::Ongoing };
 	const Band band{ GRID, GRID };

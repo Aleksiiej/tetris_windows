@@ -1,6 +1,5 @@
 #include "BaseBlock.hpp"
 #include "BlockBoard.hpp"
-#include "GlobalValues.hpp"
 
 #include <algorithm>
 

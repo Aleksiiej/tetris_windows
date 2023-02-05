@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include "BaseBlock.hpp"
 
 using namespace sf;

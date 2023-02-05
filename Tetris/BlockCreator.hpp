@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <random>
 #include <SFML/Graphics.hpp>
 

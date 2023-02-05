@@ -1,9 +1,10 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include <array>
+#include <SFML/Graphics.hpp>
 #include <utility>
+
+#include "GlobalValues.hpp"
 
 using namespace sf;
 using namespace std;

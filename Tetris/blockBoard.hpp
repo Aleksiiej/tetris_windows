@@ -1,8 +1,6 @@
 #pragma once
 
-#include <algorithm>
 #include <array>
-#include <SFML/Graphics.hpp>
 
 #include "GlobalValues.hpp"
 #include "ScoreCounter.hpp"

@@ -1,6 +1,5 @@
 #include "BlockBoard.hpp"
 #include "Block1.hpp"
-#include "GlobalValues.hpp"
 
 Block1::Block1(BlockBoard& blockBoardRef) noexcept
 	: BaseBlock(blockBoardRef)
