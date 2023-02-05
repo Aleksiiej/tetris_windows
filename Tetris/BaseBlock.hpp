@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 
+#include "BlockBoard.hpp"
 #include "GlobalValues.hpp"
 
 using namespace sf;

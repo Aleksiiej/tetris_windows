@@ -17,7 +17,7 @@ int main()
 	RenderWindow window{ VideoMode{800, 600}, "Tetris" };
 	window.setFramerateLimit(60);
 	Event event;
-	Time micro = milliseconds(GAME_SPEED);
+	//Time micro = milliseconds(GAME_SPEED); // TODO: Explore SFML timers
 
 	GameStatus gameStatus{ GameStatus::Ongoing };
 	const Band band{ GRID, GRID };

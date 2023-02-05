@@ -1,4 +1,3 @@
-#include "BlockBoard.hpp"
 #include "Block2.hpp"
 
 Block2::Block2(BlockBoard& blockBoardRef) noexcept
