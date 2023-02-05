@@ -52,11 +52,7 @@ int main()
 						break;
 
 					case Keyboard::Down:
-						while (ptrToBlock->isFallingPossible())
-						{
-							while (window.pollEvent(event));
-							ptrToBlock->fall();
-						}
+						ptrToBlock->moveDown();
 						break;
 
 					case Keyboard::Space:

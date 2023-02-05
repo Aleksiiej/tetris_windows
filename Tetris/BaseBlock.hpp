@@ -22,6 +22,7 @@ public:
 	void fall() noexcept;
 	void moveRight() noexcept;
 	void moveLeft() noexcept;
+	void moveDown() noexcept;
 	virtual void rotate() noexcept {}
 
 	const bool checkIfLost() const noexcept;

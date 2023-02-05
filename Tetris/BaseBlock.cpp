@@ -3,17 +3,13 @@
 #include "GlobalValues.hpp"
 
 #include <algorithm>
-#include <iostream>
 
 BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockBoardRef)
 {}
 
 void BaseBlock::fall() noexcept
 {
-	if (isFallingPossible())
-	{
-		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
-	}
+	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
 }
 
 void BaseBlock::moveRight() noexcept
@@ -29,6 +25,14 @@ void BaseBlock::moveLeft() noexcept
 	if (isMoveLeftPossible())
 	{
 		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
+	}
+}
+
+void BaseBlock::moveDown() noexcept
+{
+	while (isFallingPossible())
+	{
+		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
 	}
 }
 
