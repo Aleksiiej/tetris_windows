@@ -8,14 +8,14 @@ BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockB
 
 void BaseBlock::fall() noexcept
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
 }
 
 void BaseBlock::moveRight() noexcept
 {
 	if (isMoveRightPossible())
 	{
-		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(GRID, 0); });
+		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(GRID, 0); });
 	}
 }
 
@@ -23,7 +23,7 @@ void BaseBlock::moveLeft() noexcept
 {
 	if (isMoveLeftPossible())
 	{
-		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
+		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
 	}
 }
 
@@ -31,7 +31,7 @@ void BaseBlock::moveDown() noexcept
 {
 	while (isFallingPossible())
 	{
-		for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
 	}
 }
 
@@ -39,11 +39,11 @@ const bool BaseBlock::isFallingPossible() const noexcept
 {
 	auto blockCoords = move(getCoords());
 	auto coordsToDown = blockCoords;
-	for_each(begin(coordsToDown), end(coordsToDown), [](auto& coords) { coords.second += GRID; });
+	std::for_each(begin(coordsToDown), end(coordsToDown), [](auto& coords) { coords.second += GRID; });
 
 	for (auto It = begin(coordsToDown); It != end(coordsToDown); It++)
 	{
-		if (any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
+		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
 		{
 			coordsToDown.erase(It);
 			It = begin(coordsToDown);
@@ -53,7 +53,7 @@ const bool BaseBlock::isFallingPossible() const noexcept
 	for (const auto& field : coordsToDown)
 	{
 		if (field.second > GRID * NUMBER_OF_ROWS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != Color::White)
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White)
 		{
 			setColorsInBlockBoard();
 			return false;
@@ -66,11 +66,11 @@ const bool BaseBlock::isMoveRightPossible() const noexcept
 {
 	auto blockCoords = move(getCoords());
 	auto coordsToRight = blockCoords;
-	for_each(begin(coordsToRight), end(coordsToRight), [](auto& coords) { coords.first += GRID; });
+	std::for_each(begin(coordsToRight), end(coordsToRight), [](auto& coords) { coords.first += GRID; });
 
 	for (auto It = begin(coordsToRight); It != end(coordsToRight); It++)
 	{
-		if (any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
+		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
 		{
 			coordsToRight.erase(It);
 			It = begin(coordsToRight);
@@ -80,7 +80,7 @@ const bool BaseBlock::isMoveRightPossible() const noexcept
 	for (const auto& field : coordsToRight)
 	{
 		if (field.first > GRID * NUMBER_OF_COLUMNS
-			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != Color::White)
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White)
 		{
 			return false;
 		}
@@ -92,11 +92,11 @@ const bool BaseBlock::isMoveLeftPossible() const noexcept
 {
 	auto blockCoords = move(getCoords());
 	auto coordsToLeft = blockCoords;
-	for_each(begin(coordsToLeft), end(coordsToLeft), [](auto& coords) { coords.first -= GRID; });
+	std::for_each(begin(coordsToLeft), end(coordsToLeft), [](auto& coords) { coords.first -= GRID; });
 
 	for (auto It = begin(coordsToLeft); It != end(coordsToLeft); It++)
 	{
-		if (any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
+		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
 		{
 			coordsToLeft.erase(It);
 			It = begin(coordsToLeft);
@@ -105,7 +105,7 @@ const bool BaseBlock::isMoveLeftPossible() const noexcept
 
 	for (const auto& field : coordsToLeft)
 	{
-		if (blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != Color::White
+		if (blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White
 			or field.first <= 0)
 		{
 			return false;
@@ -124,7 +124,7 @@ const bool BaseBlock::checkIfLost() const noexcept
 		{
 			isAtTopLine = true;
 		}
-		if (blockBoardRef_.getBoardArrayRef().at(gridToX(i)).at(gridToY(i)) != Color::White)
+		if (blockBoardRef_.getBoardArrayRef().at(gridToX(i)).at(gridToY(i)) != sf::Color::White)
 		{
 			isOccupied = true;
 		}
@@ -132,9 +132,9 @@ const bool BaseBlock::checkIfLost() const noexcept
 	return(isAtTopLine and isOccupied);
 }
 
-void BaseBlock::setColor(const Color& color) noexcept
+void BaseBlock::setColor(const sf::Color& color) noexcept
 {
-	for_each(begin(blockArray_), end(blockArray_), [&](auto& block) { block.setFillColor(color); });
+	std::for_each(begin(blockArray_), end(blockArray_), [&](auto& block) { block.setFillColor(color); });
 }
 
 void BaseBlock::setColorsInBlockBoard() const noexcept
@@ -145,17 +145,17 @@ void BaseBlock::setColorsInBlockBoard() const noexcept
 	}
 }
 
-const array<RectangleShape, 4>& BaseBlock::getBlockArrayRef() const noexcept
+const std::array<sf::RectangleShape, 4>& BaseBlock::getBlockArrayRef() const noexcept
 {
 	return blockArray_;
 }
 
-vector<pair<float, float>> BaseBlock::getCoords() const noexcept
+std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
 {
-	vector<pair<float, float>> blockCoords;
+	std::vector<std::pair<float, float>> blockCoords;
 	for (uint8_t i = 0; i < 4; i++)
 	{
-		blockCoords.push_back(make_pair(blockArray_.at(i).getPosition().x, blockArray_.at(i).getPosition().y));
+		blockCoords.push_back(std::make_pair(blockArray_.at(i).getPosition().x, blockArray_.at(i).getPosition().y));
 	}
 	return blockCoords;
 }

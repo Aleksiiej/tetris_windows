@@ -2,10 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-using namespace std;
-
-class ScoreCounter : public Drawable
+class ScoreCounter : public sf::Drawable
 {
 public:
 	ScoreCounter() noexcept;
@@ -18,8 +15,8 @@ public:
 
 private:
 	short int score_;
-	Font font_;
-	Text text_;
-	void draw(RenderTarget& target, RenderStates states) const noexcept override;
+	sf::Font font_;
+	sf::Text text_;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const noexcept override;
 };
 

@@ -3,9 +3,6 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-using namespace std;
-
 class BaseBlock;
 class BlockBoard;
 
@@ -17,6 +14,6 @@ public:
 	BlockCreator(const BlockCreator&& other) = delete;
 	~BlockCreator() = default;
 
-	static unique_ptr<BaseBlock> createRandomBlock(BlockBoard& blockBoardRef_, random_device& rd) noexcept;
+	static std::unique_ptr<BaseBlock> createRandomBlock(BlockBoard& blockBoardRef_, std::random_device& rd) noexcept;
 };
 

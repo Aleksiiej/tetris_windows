@@ -2,10 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-using namespace std;
-
-class EndgameText : public Drawable
+class EndgameText : public sf::Drawable
 {
 public:
 	EndgameText() noexcept;
@@ -14,8 +11,8 @@ public:
 	~EndgameText() = default;
 
 private:
-	Font font_;
-	Text text_;
-	void draw(RenderTarget& target, RenderStates states) const noexcept override;
+	sf::Font font_;
+	sf::Text text_;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const noexcept override;
 };
 

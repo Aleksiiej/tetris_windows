@@ -3,8 +3,8 @@
 Block5::Block5(BlockBoard& blockBoardRef) noexcept
 	: BaseBlock(blockBoardRef), currentPosition_(FourBlockPositions::FlatOnTop)
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block = RectangleShape{ Vector2f{ GRID, GRID } }; });
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.setFillColor(Color::Red); });
+	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block = sf::RectangleShape{ sf::Vector2f{ GRID, GRID } }; });
+	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.setFillColor(sf::Color::Red); });
 	blockArray_.at(0).setPosition((NUMBER_OF_COLUMNS / 2) * GRID - GRID, GRID);
 	blockArray_.at(1).setPosition((NUMBER_OF_COLUMNS / 2) * GRID, GRID);
 	blockArray_.at(2).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, GRID);
@@ -25,9 +25,9 @@ const bool Block5::isRotationPossible() const noexcept
 	{
 	case FourBlockPositions::FlatOnTop:
 		if (blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1) + 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == Color::White)
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1) + 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == sf::Color::White)
 		{
 			return true;
 		}
@@ -36,18 +36,18 @@ const bool Block5::isRotationPossible() const noexcept
 	case FourBlockPositions::FlatOnRigth:
 		if (blockArray_.at(1).getPosition().x > GRID
 			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1) - 1) == Color::White)
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1) - 1) == sf::Color::White)
 		{
 			return true;
 		}
 		return false;
 
 	case FourBlockPositions::FlatOnBottom:
-		if (blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1) - 1) == Color::White)
+		if (blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1) - 1) == sf::Color::White)
 		{
 			return true;
 		}
@@ -56,9 +56,9 @@ const bool Block5::isRotationPossible() const noexcept
 	case FourBlockPositions::FlatOnLeft:
 		if (blockArray_.at(1).getPosition().x > GRID
 			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1) + 1) == Color::White)
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1) + 1) == sf::Color::White)
 		{
 			return true;
 		}

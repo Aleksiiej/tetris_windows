@@ -4,8 +4,6 @@
 
 #include "GlobalValues.hpp"
 
-using namespace sf;
-
 class Band : public sf::Drawable
 {
 public:
@@ -16,9 +14,9 @@ public:
 	~Band() = default;
 
 private:
-	RectangleShape band_{};
-	const Vector2f size_{ NUMBER_OF_COLUMNS * GRID, NUMBER_OF_ROWS * GRID };
+	sf::RectangleShape band_{};
+	const sf::Vector2f size_{ NUMBER_OF_COLUMNS * GRID, NUMBER_OF_ROWS * GRID };
 
-	void draw(RenderTarget& target, RenderStates states) const noexcept override;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const noexcept override;
 };
 

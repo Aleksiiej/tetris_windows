@@ -3,8 +3,8 @@
 Block2::Block2(BlockBoard& blockBoardRef) noexcept
 	: BaseBlock(blockBoardRef), currentPosition_(TwoBlockPositions::Horizontal)
 {
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block = RectangleShape{ Vector2f{ GRID, GRID } }; });
-	for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.setFillColor(Color::Red); });
+	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block = sf::RectangleShape{ sf::Vector2f{ GRID, GRID } }; });
+	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.setFillColor(sf::Color::Red); });
 	blockArray_.at(0).setPosition((NUMBER_OF_COLUMNS / 2) * GRID - GRID, GRID);
 	blockArray_.at(1).setPosition((NUMBER_OF_COLUMNS / 2) * GRID, GRID);
 	blockArray_.at(2).setPosition((NUMBER_OF_COLUMNS / 2) * GRID + GRID, GRID);
@@ -22,9 +22,9 @@ const bool Block2::isRotationPossible() const noexcept
 	{
 		if (blockArray_.at(1).getPosition().y > GRID
 			and blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS - GRID
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 2) == Color::White)
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 2) == sf::Color::White)
 		{
 			return true;
 		}
@@ -36,9 +36,9 @@ const bool Block2::isRotationPossible() const noexcept
 			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS - GRID
 			and blockArray_.at(1).getPosition().y > GRID
 			and blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS - GRID
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 2).at(gridToY(1)) == Color::White)
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == sf::Color::White
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 2).at(gridToY(1)) == sf::Color::White)
 		{
 			return true;
 		}

@@ -2,9 +2,6 @@
 
 #include "BaseBlock.hpp"
 
-using namespace sf;
-using namespace std;
-
 class BlockBoard;
 
 class Block2: public BaseBlock

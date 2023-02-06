@@ -6,57 +6,53 @@
 #include "GlobalValues.hpp"
 #include "ScoreCounter.hpp"
 
-using namespace sf;
-using namespace std;
-
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, RenderWindow& window) noexcept;
+void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window) noexcept;
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
 
 int main()
 {
-	RenderWindow window{ VideoMode{800, 600}, "Tetris" };
+	sf::RenderWindow window{ sf::VideoMode{800, 600}, "Tetris" };
 	window.setFramerateLimit(60);
-	Event event;
-	//Time micro = milliseconds(GAME_SPEED); // TODO: Explore SFML timers
+	sf::Event event;
 
 	GameStatus gameStatus{ GameStatus::Ongoing };
 	const Band band{ GRID, GRID };
 	const EndgameText endgameText;
 	ScoreCounter scoreCounter;
 	BlockBoard blockBoard{ scoreCounter };
-	random_device rd;
-	unique_ptr<BaseBlock> ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard, rd));
+	std::random_device rd;
+	std::unique_ptr<BaseBlock> ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
 
 	while (true)
 	{
-		window.clear(Color::White);
+		window.clear(sf::Color::White);
 
-		if (gameStatus == GameStatus::Ongoing)
+		if (gameStatus == GameStatus::Ongoing) 
 		{
 			while (window.pollEvent(event))
 			{
-				if (event.type == Event::EventType::KeyPressed)
+				if (event.type == sf::Event::EventType::KeyPressed)
 				{
 					switch (event.key.code)
 					{
-					case Keyboard::Right:
+					case sf::Keyboard::Right:
 						ptrToBlock->moveRight();
 						break;
 
-					case Keyboard::Left:
+					case sf::Keyboard::Left:
 						ptrToBlock->moveLeft();
 						break;
 
-					case Keyboard::Down:
+					case sf::Keyboard::Down:
 						ptrToBlock->moveDown();
 						break;
 
-					case Keyboard::Space:
+					case sf::Keyboard::Space:
 						ptrToBlock->rotate();
 						break;
 					}
 				}
-				else if (event.type == Event::EventType::Closed)
+				else if (event.type == sf::Event::EventType::Closed)
 				{
 					window.close();
 					return 0;
@@ -70,7 +66,7 @@ int main()
 				window.draw(block);
 			}
 			window.display();
-			sleep(milliseconds(GAME_SPEED));
+			sf::sleep(sf::milliseconds(GAME_SPEED));
 			if (ptrToBlock->isFallingPossible())
 			{
 				ptrToBlock->fall();
@@ -78,7 +74,7 @@ int main()
 			else
 			{
 				ptrToBlock.reset(nullptr);
-				ptrToBlock = move(BlockCreator::createRandomBlock(blockBoard, rd));
+				ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
 				if (ptrToBlock->checkIfLost())
 				{
 					gameStatus = GameStatus::Lost;
@@ -92,12 +88,12 @@ int main()
 			window.display();
 			while (window.waitEvent(event))
 			{
-				if (event.type == Event::EventType::Closed or event.key.code == Keyboard::Escape)
+				if (event.type == sf::Event::EventType::Closed or event.key.code == sf::Keyboard::Escape)
 				{
 					window.close();
 					return 0;
 				}
-				if (event.type == Event::EventType::KeyPressed and event.key.code == Keyboard::Space)
+				if (event.type == sf::Event::EventType::KeyPressed and event.key.code == sf::Keyboard::Space)
 				{
 					break;
 				}
@@ -108,13 +104,13 @@ int main()
 	return 0;
 }
 
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, RenderWindow& window) noexcept
+void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window) noexcept
 {
 	window.draw(band);
 	window.draw(scoreCounter);
 
-	RectangleShape singleField; // TODO: figure out how to use smaller class than RectangleShape
-	singleField.setSize(Vector2f{ GRID, GRID });
+	sf::RectangleShape singleField; // TODO: figure out how to use smaller class than RectangleShape
+	singleField.setSize(sf::Vector2f{ GRID, GRID });
 	for (uint8_t i = 0; i < NUMBER_OF_COLUMNS; i++)
 	{
 		for (uint8_t j = 0; j < NUMBER_OF_ROWS; j++)

@@ -7,9 +7,6 @@
 #include "BlockBoard.hpp"
 #include "GlobalValues.hpp"
 
-using namespace sf;
-using namespace std;
-
 class BlockBoard;
 
 class BaseBlock
@@ -33,13 +30,13 @@ public:
 	const bool isMoveLeftPossible() const noexcept;
 	virtual const bool isRotationPossible() const noexcept { return false; }
 
-	void setColor(const Color& color) noexcept;
+	void setColor(const sf::Color& color) noexcept;
 	void setColorsInBlockBoard() const noexcept;
-	const array<RectangleShape, 4>& getBlockArrayRef() const noexcept;
-	vector<pair<float, float>> getCoords() const noexcept;
+	const std::array<sf::RectangleShape, 4>& getBlockArrayRef() const noexcept;
+	std::vector<std::pair<float, float>> getCoords() const noexcept;
 
 protected:
-	array<RectangleShape, 4> blockArray_;
+	std::array<sf::RectangleShape, 4> blockArray_;
 	BlockBoard& blockBoardRef_;
 
 	const int gridToX(const float& blockNumber) const noexcept;
