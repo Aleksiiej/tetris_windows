@@ -35,22 +35,14 @@ void BaseBlock::moveDown() noexcept
 	}
 }
 
-const bool BaseBlock::isFallingPossible() const noexcept
+const bool BaseBlock::isFallingPossible() noexcept
 {
-	auto blockCoords = move(getCoords());
-	auto coordsToDown = blockCoords;
-	std::for_each(begin(coordsToDown), end(coordsToDown), [](auto& coords) { coords.second += GRID; });
+	auto blockCoords = getCoords();
+	auto newCoords{ blockCoords };
+	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.second += GRID; });
+	extractAdjacentCoords(blockCoords, newCoords);
 
-	for (auto It = begin(coordsToDown); It != end(coordsToDown); It++)
-	{
-		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
-		{
-			coordsToDown.erase(It);
-			It = begin(coordsToDown);
-		}
-	}
-
-	for (const auto& field : coordsToDown)
+	for (const auto& field : newCoords)
 	{
 		if (field.second > GRID * NUMBER_OF_ROWS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White)
@@ -62,22 +54,14 @@ const bool BaseBlock::isFallingPossible() const noexcept
 	return true;
 }
 
-const bool BaseBlock::isMoveRightPossible() const noexcept
+const bool BaseBlock::isMoveRightPossible() noexcept
 {
-	auto blockCoords = move(getCoords());
-	auto coordsToRight = blockCoords;
-	std::for_each(begin(coordsToRight), end(coordsToRight), [](auto& coords) { coords.first += GRID; });
+	auto blockCoords = getCoords();
+	auto newCoords{ blockCoords };
+	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.first += GRID; });
+	extractAdjacentCoords(blockCoords, newCoords);
 
-	for (auto It = begin(coordsToRight); It != end(coordsToRight); It++)
-	{
-		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
-		{
-			coordsToRight.erase(It);
-			It = begin(coordsToRight);
-		}
-	}
-
-	for (const auto& field : coordsToRight)
+	for (const auto& field : newCoords)
 	{
 		if (field.first > GRID * NUMBER_OF_COLUMNS
 			or blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White)
@@ -88,22 +72,14 @@ const bool BaseBlock::isMoveRightPossible() const noexcept
 	return true;
 }
 
-const bool BaseBlock::isMoveLeftPossible() const noexcept
+const bool BaseBlock::isMoveLeftPossible() noexcept
 {
-	auto blockCoords = move(getCoords());
-	auto coordsToLeft = blockCoords;
-	std::for_each(begin(coordsToLeft), end(coordsToLeft), [](auto& coords) { coords.first -= GRID; });
+	auto blockCoords = getCoords();
+	auto newCoords{ blockCoords };
+	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.first -= GRID; });
+	extractAdjacentCoords(blockCoords, newCoords);
 
-	for (auto It = begin(coordsToLeft); It != end(coordsToLeft); It++)
-	{
-		if (std::any_of(begin(blockCoords), end(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
-		{
-			coordsToLeft.erase(It);
-			It = begin(coordsToLeft);
-		}
-	}
-
-	for (const auto& field : coordsToLeft)
+	for (const auto& field : newCoords)
 	{
 		if (blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White
 			or field.first <= 0)
@@ -160,11 +136,23 @@ std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
 	return blockCoords;
 }
 
+void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& blockCoords, std::vector<std::pair<float, float>>& newCoords) noexcept
+{
+	for (auto It = begin(newCoords); It != end(newCoords); It++)
+	{
+		if (std::any_of(cbegin(blockCoords), cend(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
+		{
+			newCoords.erase(It);
+			It = begin(newCoords);
+		}
+	}
+}
+
 const int BaseBlock::gridToX(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{
-		return static_cast<uint8_t>((blockArray_.at(blockNumber).getPosition().x - GRID) / GRID);
+		return static_cast<int>((blockArray_.at(static_cast<std::size_t>(blockNumber)).getPosition().x - GRID) / GRID);
 	}
 	else return static_cast<int>((blockNumber - GRID) / GRID);
 }
@@ -173,7 +161,7 @@ const int BaseBlock::gridToY(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{
-		return static_cast<uint8_t>((blockArray_.at(blockNumber).getPosition().y - GRID) / GRID);
+		return static_cast<int>((blockArray_.at(static_cast<std::size_t>(blockNumber)).getPosition().y - GRID) / GRID);
 	}
 	else return static_cast<int>((blockNumber - GRID) / GRID);
 }

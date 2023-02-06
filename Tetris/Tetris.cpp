@@ -6,7 +6,7 @@
 #include "GlobalValues.hpp"
 #include "ScoreCounter.hpp"
 
-std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock) noexcept;
+std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock = nullptr) noexcept;
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
 
 int main()
@@ -27,7 +27,7 @@ int main()
 	{
 		window.clear(sf::Color::White);
 
-		if (gameStatus == GameStatus::Ongoing) 
+		if (gameStatus == GameStatus::Ongoing)
 		{
 			while (window.pollEvent(event))
 			{
@@ -79,7 +79,7 @@ int main()
 		}
 		else if (gameStatus == GameStatus::Lost)
 		{
-			drawBoard(band, blockBoard, scoreCounter, window, std::move(ptrToBlock));
+			drawBoard(band, blockBoard, scoreCounter, window);
 			window.draw(endgameText);
 			window.display();
 			while (window.waitEvent(event))
@@ -116,9 +116,12 @@ std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef
 			window.draw(singleField);
 		}
 	}
-	for (const auto& block : ptrToBlock->getBlockArrayRef())
+	if (ptrToBlock)
 	{
-		window.draw(block);
+		for (const auto& block : ptrToBlock->getBlockArrayRef())
+		{
+			window.draw(block);
+		}
 	}
 
 	return ptrToBlock;
