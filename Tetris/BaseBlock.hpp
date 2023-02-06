@@ -7,8 +7,6 @@
 #include "BlockBoard.hpp"
 #include "GlobalValues.hpp"
 
-class BlockBoard;
-
 class BaseBlock
 {
 public:

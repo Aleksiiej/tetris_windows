@@ -45,7 +45,7 @@
     <ClCompile Include="Block7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="blockBoard.cpp">
+    <ClCompile Include="BlockBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlockCreator.cpp">
@@ -86,7 +86,7 @@
     <ClInclude Include="Block7.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blockBoard.hpp">
+    <ClInclude Include="BlockBoard.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BlockCreator.hpp">

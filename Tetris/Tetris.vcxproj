@@ -160,7 +160,7 @@
     <ClCompile Include="Block5.cpp" />
     <ClCompile Include="Block6.cpp" />
     <ClCompile Include="Block7.cpp" />
-    <ClCompile Include="blockBoard.cpp" />
+    <ClCompile Include="BlockBoard.cpp" />
     <ClCompile Include="BlockCreator.cpp" />
     <ClCompile Include="EndgameText.cpp" />
     <ClCompile Include="ScoreCounter.cpp" />
@@ -176,7 +176,7 @@
     <ClInclude Include="Block5.hpp" />
     <ClInclude Include="Block6.hpp" />
     <ClInclude Include="Block7.hpp" />
-    <ClInclude Include="blockBoard.hpp" />
+    <ClInclude Include="BlockBoard.hpp" />
     <ClInclude Include="BlockCreator.hpp" />
     <ClInclude Include="EndgameText.hpp" />
     <ClInclude Include="GlobalValues.hpp" />

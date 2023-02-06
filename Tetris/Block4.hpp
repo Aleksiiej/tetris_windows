@@ -2,8 +2,6 @@
 
 #include "BaseBlock.hpp"
 
-class BlockBoard;
-
 class Block4 : public BaseBlock
 {
 public:
