@@ -3,7 +3,7 @@
 #include <array>
 
 #include "GlobalValues.hpp"
-#include "ScoreCounter.hpp"
+
 
 using BoardArray = std::array<std::array<sf::Color, NUMBER_OF_ROWS>, NUMBER_OF_COLUMNS>;
 

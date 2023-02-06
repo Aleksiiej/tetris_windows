@@ -1,11 +1,6 @@
 #pragma once
 
-#include <array>
-#include <SFML/Graphics.hpp>
-#include <utility>
-
 #include "BlockBoard.hpp"
-#include "GlobalValues.hpp"
 
 class BaseBlock
 {

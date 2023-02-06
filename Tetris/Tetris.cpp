@@ -1,10 +1,7 @@
 #include "Band.hpp"
-#include "BlockBoard.hpp"
 #include "BlockCreator.hpp"
 #include "BaseBlock.hpp"
 #include "EndgameText.hpp"
-#include "GlobalValues.hpp"
-#include "ScoreCounter.hpp"
 
 std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock = nullptr) noexcept;
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
