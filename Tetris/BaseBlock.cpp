@@ -1,7 +1,4 @@
 #include "BaseBlock.hpp"
-#include "BlockBoard.hpp"
-
-#include <algorithm>
 
 BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockBoardRef)
 {}
