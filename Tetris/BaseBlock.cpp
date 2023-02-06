@@ -35,7 +35,7 @@ void BaseBlock::moveDown() noexcept
 	}
 }
 
-const bool BaseBlock::isFallingPossible() noexcept
+bool BaseBlock::isFallingPossible() noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -54,7 +54,7 @@ const bool BaseBlock::isFallingPossible() noexcept
 	return true;
 }
 
-const bool BaseBlock::isMoveRightPossible() noexcept
+bool BaseBlock::isMoveRightPossible() noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -72,7 +72,7 @@ const bool BaseBlock::isMoveRightPossible() noexcept
 	return true;
 }
 
-const bool BaseBlock::isMoveLeftPossible() noexcept
+bool BaseBlock::isMoveLeftPossible() noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -90,7 +90,7 @@ const bool BaseBlock::isMoveLeftPossible() noexcept
 	return true;
 }
 
-const bool BaseBlock::checkIfLost() const noexcept
+bool BaseBlock::checkIfLost() const noexcept
 {
 	bool isAtTopLine = false;
 	bool isOccupied = false;
@@ -113,17 +113,17 @@ void BaseBlock::setColor(const sf::Color& color) noexcept
 	std::for_each(begin(blockArray_), end(blockArray_), [&](auto& block) { block.setFillColor(color); });
 }
 
+const std::array<sf::RectangleShape, 4>& BaseBlock::getBlockArrayRef() const noexcept
+{
+	return blockArray_;
+}
+
 void BaseBlock::setColorsInBlockBoard() const noexcept
 {
 	for (uint8_t i = 0; i < 4; i++)
 	{
 		blockBoardRef_.setFillColor(gridToX(i), gridToY(i), blockArray_.at(0).getFillColor());
 	}
-}
-
-const std::array<sf::RectangleShape, 4>& BaseBlock::getBlockArrayRef() const noexcept
-{
-	return blockArray_;
 }
 
 std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
@@ -148,7 +148,7 @@ void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& bloc
 	}
 }
 
-const int BaseBlock::gridToX(const float& blockNumber) const noexcept
+int BaseBlock::gridToX(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{
@@ -157,7 +157,7 @@ const int BaseBlock::gridToX(const float& blockNumber) const noexcept
 	else return static_cast<int>((blockNumber - GRID) / GRID);
 }
 
-const int BaseBlock::gridToY(const float& blockNumber) const noexcept
+int BaseBlock::gridToY(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{

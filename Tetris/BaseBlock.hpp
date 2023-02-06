@@ -22,22 +22,22 @@ public:
 	void moveDown() noexcept;
 	virtual void rotate() noexcept {}
 
-	const bool checkIfLost() const noexcept;
-	const bool isFallingPossible() noexcept;
-	const bool isMoveRightPossible() noexcept;
-	const bool isMoveLeftPossible() noexcept;
+	bool checkIfLost() const noexcept;
+	bool isFallingPossible() noexcept;
+	bool isMoveRightPossible() noexcept;
+	bool isMoveLeftPossible() noexcept;
 	virtual const bool isRotationPossible() const noexcept { return false; }
 
 	void setColor(const sf::Color& color) noexcept;
-	void setColorsInBlockBoard() const noexcept;
 	const std::array<sf::RectangleShape, 4>& getBlockArrayRef() const noexcept;
-	std::vector<std::pair<float, float>> getCoords() const noexcept;
 
 protected:
 	std::array<sf::RectangleShape, 4> blockArray_;
 	BlockBoard& blockBoardRef_;
 
+	void setColorsInBlockBoard() const noexcept;
+	std::vector<std::pair<float, float>> getCoords() const noexcept;
 	void extractAdjacentCoords(std::vector<std::pair<float, float>>& blockCoords, std::vector<std::pair<float, float>>& newCoords) noexcept;
-	const int gridToX(const float& blockNumber) const noexcept;
-	const int gridToY(const float& blockNumber) const noexcept;
+	int gridToX(const float& blockNumber) const noexcept;
+	int gridToY(const float& blockNumber) const noexcept;
 };

@@ -11,7 +11,7 @@ void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& sco
 
 int main()
 {
-	sf::RenderWindow window{ sf::VideoMode{800, 600}, "Tetris" };
+	sf::RenderWindow window{ sf::VideoMode{800, 600}, "Tetris", sf::Style::Titlebar | sf::Style::Close };
 	window.setFramerateLimit(60);
 	sf::Event event;
 
