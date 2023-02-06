@@ -6,7 +6,7 @@
 #include "GlobalValues.hpp"
 #include "ScoreCounter.hpp"
 
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window) noexcept;
+std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock) noexcept;
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
 
 int main()
@@ -58,13 +58,8 @@ int main()
 					return 0;
 				}
 			}
-
 			blockBoard.handleFilledRows();
-			drawBoard(band, blockBoard, scoreCounter, window);
-			for (const auto& block : ptrToBlock->getBlockArrayRef())
-			{
-				window.draw(block);
-			}
+			ptrToBlock = drawBoard(band, blockBoard, scoreCounter, window, std::move(ptrToBlock));
 			window.display();
 			sf::sleep(sf::milliseconds(GAME_SPEED));
 			if (ptrToBlock->isFallingPossible())
@@ -83,7 +78,7 @@ int main()
 		}
 		else if (gameStatus == GameStatus::Lost)
 		{
-			drawBoard(band, blockBoard, scoreCounter, window);
+			drawBoard(band, blockBoard, scoreCounter, window, std::move(ptrToBlock));
 			window.draw(endgameText);
 			window.display();
 			while (window.waitEvent(event))
@@ -104,7 +99,7 @@ int main()
 	return 0;
 }
 
-void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window) noexcept
+std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock) noexcept
 {
 	window.draw(band);
 	window.draw(scoreCounter);
@@ -120,6 +115,12 @@ void drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& 
 			window.draw(singleField);
 		}
 	}
+	for (const auto& block : ptrToBlock->getBlockArrayRef())
+	{
+		window.draw(block);
+	}
+
+	return ptrToBlock;
 }
 
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter)
