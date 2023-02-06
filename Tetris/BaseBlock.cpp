@@ -162,34 +162,18 @@ std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
 
 const int BaseBlock::gridToX(const float& blockNumber) const noexcept
 {
-	switch (static_cast<int>(blockNumber))
+	if (blockNumber >= 0 and blockNumber < 5)
 	{
-	case 0:
-		return static_cast<uint8_t>((blockArray_.at(0).getPosition().x - GRID) / GRID);
-	case 1:
-		return static_cast<uint8_t>((blockArray_.at(1).getPosition().x - GRID) / GRID);
-	case 2:
-		return static_cast<uint8_t>((blockArray_.at(2).getPosition().x - GRID) / GRID);
-	case 3:
-		return static_cast<uint8_t>((blockArray_.at(3).getPosition().x - GRID) / GRID);
-	default:
-		return static_cast<int>((blockNumber - GRID) / GRID);
+		return static_cast<uint8_t>((blockArray_.at(blockNumber).getPosition().x - GRID) / GRID);
 	}
+	else return static_cast<int>((blockNumber - GRID) / GRID);
 }
 
 const int BaseBlock::gridToY(const float& blockNumber) const noexcept
 {
-	switch (static_cast<int>(blockNumber))
+	if (blockNumber >= 0 and blockNumber < 5)
 	{
-	case 0:
-		return static_cast<uint8_t>((blockArray_.at(0).getPosition().y - GRID) / GRID);
-	case 1:
-		return static_cast<uint8_t>((blockArray_.at(1).getPosition().y - GRID) / GRID);
-	case 2:
-		return static_cast<uint8_t>((blockArray_.at(2).getPosition().y - GRID) / GRID);
-	case 3:
-		return static_cast<uint8_t>((blockArray_.at(3).getPosition().y - GRID) / GRID);
-	default:
-		return static_cast<int>((blockNumber - GRID) / GRID);
+		return static_cast<uint8_t>((blockArray_.at(blockNumber).getPosition().y - GRID) / GRID);
 	}
+	else return static_cast<int>((blockNumber - GRID) / GRID);
 }

@@ -44,6 +44,7 @@ int main()
 						break;
 
 					case sf::Keyboard::Down:
+						while (window.pollEvent(event));
 						ptrToBlock->moveDown();
 						break;
 
