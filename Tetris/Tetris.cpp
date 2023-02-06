@@ -4,7 +4,7 @@
 #include "EndgameText.hpp"
 
 std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock = nullptr) noexcept;
-void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter);
+void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter) noexcept;
 
 int main()
 {
@@ -124,7 +124,7 @@ std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef
 	return ptrToBlock;
 }
 
-void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter)
+void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter) noexcept
 {
 	gameStatus = GameStatus::Ongoing;
 	blockBoard.clear();
