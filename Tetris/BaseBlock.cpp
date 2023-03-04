@@ -5,14 +5,14 @@ BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockB
 
 void BaseBlock::fall() noexcept
 {
-	std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+	std::ranges::for_each(blockArray_, [](auto& block) { block.move(0, GRID); });
 }
 
 void BaseBlock::moveRight() noexcept
 {
 	if (isMoveRightPossible())
 	{
-		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(GRID, 0); });
+		std::ranges::for_each(blockArray_, [](auto& block) { block.move(GRID, 0); });
 	}
 }
 
@@ -20,7 +20,7 @@ void BaseBlock::moveLeft() noexcept
 {
 	if (isMoveLeftPossible())
 	{
-		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(-GRID, 0); });
+		std::ranges::for_each(blockArray_, [](auto& block) { block.move(-GRID, 0); });
 	}
 }
 
@@ -28,7 +28,7 @@ void BaseBlock::moveDown() noexcept
 {
 	while (isFallingPossible())
 	{
-		std::for_each(begin(blockArray_), end(blockArray_), [](auto& block) { block.move(0, GRID); });
+		std::ranges::for_each(blockArray_, [](auto& block) { block.move(0, GRID); });
 	}
 }
 
@@ -55,7 +55,7 @@ bool BaseBlock::isMoveRightPossible() noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
-	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.first += GRID; });
+	std::ranges::for_each(newCoords, [](auto& coords) { coords.first += GRID; });
 	extractAdjacentCoords(blockCoords, newCoords);
 
 	for (const auto& field : newCoords)
@@ -73,7 +73,7 @@ bool BaseBlock::isMoveLeftPossible() noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
-	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.first -= GRID; });
+	std::ranges::for_each(newCoords, [](auto& coords) { coords.first -= GRID; });
 	extractAdjacentCoords(blockCoords, newCoords);
 
 	for (const auto& field : newCoords)
@@ -107,7 +107,7 @@ bool BaseBlock::checkIfLost() const noexcept
 
 void BaseBlock::setColor(const sf::Color& color) noexcept
 {
-	std::for_each(begin(blockArray_), end(blockArray_), [&](auto& block) { block.setFillColor(color); });
+	std::ranges::for_each(blockArray_, [&](auto& block) { block.setFillColor(color); });
 }
 
 const std::array<sf::RectangleShape, 4>& BaseBlock::getBlockArrayRef() const noexcept
