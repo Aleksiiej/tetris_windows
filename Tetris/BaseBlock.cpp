@@ -137,7 +137,7 @@ void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& bloc
 {
 	for (auto It = begin(newCoords); It != end(newCoords); It++)
 	{
-		if (std::any_of(cbegin(blockCoords), cend(blockCoords), [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
+		if (std::ranges::any_of(blockCoords, [&](const auto& coord) { return It->first == coord.first and It->second == coord.second; }))
 		{
 			newCoords.erase(It);
 			It = begin(newCoords);
