@@ -129,8 +129,6 @@ const bool BaseBlock::isRotationPossible() const noexcept
 
 const bool BaseBlock::checkIfLost() const noexcept
 {
-	bool isAtTopLine = false;
-	bool isOccupied = false;
 	for (uint8_t i = 0; i < 4; i++)
 	{
 		if (blockArray_.at(i).getPosition().y == GRID
