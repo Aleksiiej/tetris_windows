@@ -10,9 +10,6 @@ public:
 	Block1(const Block1& other) = delete;
 	Block1(const Block1&& other) = delete;
 	~Block1() = default;
-
-	const bool isRotationPossible() const noexcept;
-	void rotate() noexcept;
 };
 
 // *--*

@@ -32,6 +32,21 @@ void BaseBlock::moveDown() noexcept
 	}
 }
 
+void BaseBlock::rotate() noexcept
+{
+	if (isRotationPossible())
+	{
+		int newX{ 0 };
+		int newY{ 0 };
+		for (auto& el : blockArray_)
+		{
+			newX = blockArray_.at(1).getPosition().x + blockArray_.at(1).getPosition().y - el.getPosition().y;
+			newY = blockArray_.at(1).getPosition().y - blockArray_.at(1).getPosition().x + el.getPosition().x;
+			el.setPosition(newX, newY);
+		}
+	}
+}
+
 bool BaseBlock::isFallingPossible() noexcept
 {
 	auto blockCoords = getCoords();
@@ -80,6 +95,31 @@ bool BaseBlock::isMoveLeftPossible() noexcept
 	{
 		if (blockBoardRef_.getBoardArrayRef().at(gridToX(field.first)).at(gridToY(field.second)) != sf::Color::White
 			or field.first <= 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+const bool BaseBlock::isRotationPossible() const noexcept
+{
+	int newX{ 0 };
+	int newY{ 0 };
+	std::vector<std::pair<float, float>> newCoords;
+	for (const auto& el : blockArray_)
+	{
+		newX = blockArray_.at(1).getPosition().x + blockArray_.at(1).getPosition().y - el.getPosition().y;
+		newY = blockArray_.at(1).getPosition().y - blockArray_.at(1).getPosition().x + el.getPosition().x;
+		newCoords.push_back({ newX, newY });
+	}
+	for (auto& el : newCoords)
+	{
+		if (el.first < GRID
+			or el.first > GRID * NUMBER_OF_COLUMNS
+			or el.second < GRID
+			or el.second > GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(el.first)).at(gridToY(el.second)) != sf::Color::White)
 		{
 			return false;
 		}

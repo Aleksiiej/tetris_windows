@@ -13,7 +13,7 @@ std::unique_ptr<BaseBlock> BlockCreator::createRandomBlock(BlockBoard& blockBoar
 	uint8_t randomNumber;
 
 	std::mt19937 rng(rd());
-	std::uniform_int_distribution<> distrib1(1,1);
+	std::uniform_int_distribution<> distrib1(0, 6);
 	randomNumber = distrib1(rng);
 	switch (randomNumber)
 	{

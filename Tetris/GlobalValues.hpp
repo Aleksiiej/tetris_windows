@@ -9,13 +9,3 @@ enum class GameStatus
 {
 	Ongoing, Lost
 };
-
-enum class TwoBlockPositions
-{
-	Horizontal, Vertical
-};
-
-enum class FourBlockPositions
-{
-	FlatOnTop, FlatOnRigth, FlatOnBottom, FlatOnLeft
-};

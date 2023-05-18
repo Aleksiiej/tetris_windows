@@ -10,12 +10,6 @@ public:
 	Block6(const Block6& other) = delete;
 	Block6(const Block6&& other) = delete;
 	~Block6() = default;
-
-	const bool isRotationPossible() const noexcept;
-	void rotate() noexcept;
-
-private:
-	TwoBlockPositions currentPosition_{};
 };
 
 // *---* *---*

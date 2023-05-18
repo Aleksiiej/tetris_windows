@@ -15,13 +15,13 @@ public:
 	void moveRight() noexcept;
 	void moveLeft() noexcept;
 	void moveDown() noexcept;
-	virtual void rotate() noexcept {}
+	void rotate() noexcept;
 
-	bool checkIfLost() const noexcept;
 	bool isFallingPossible() noexcept;
 	bool isMoveRightPossible() noexcept;
 	bool isMoveLeftPossible() noexcept;
-	virtual const bool isRotationPossible() const noexcept { return false; }
+	const bool isRotationPossible() const noexcept;
+	bool checkIfLost() const noexcept;
 
 	void setColor(const sf::Color& color) noexcept;
 	const std::array<sf::RectangleShape, 4>& getBlockArrayRef() const noexcept;
