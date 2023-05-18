@@ -2,7 +2,7 @@
 
 #include "BaseBlock.hpp"
 
-class Block2: public BaseBlock
+class Block2 : public BaseBlock
 {
 public:
 	Block2() = delete;
