@@ -1,7 +1,10 @@
 #include "BaseBlock.hpp"
 
 BaseBlock::BaseBlock(BlockBoard& blockBoardRef) noexcept : blockBoardRef_(blockBoardRef)
-{}
+{
+	std::ranges::for_each(blockArray_, [](auto& block) { block = sf::RectangleShape{ sf::Vector2f{ GRID, GRID } };
+	block.setFillColor(sf::Color::Red); });
+}
 
 void BaseBlock::fall() noexcept
 {
