@@ -51,7 +51,7 @@ const bool BaseBlock::isFallingPossible() const noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
-	std::for_each(begin(newCoords), end(newCoords), [](auto& coords) { coords.second += GRID; });
+	std::ranges::for_each(newCoords, [](auto& coords) { coords.second += GRID; });
 	extractAdjacentCoords(blockCoords, newCoords);
 
 	for (const auto& field : newCoords)
