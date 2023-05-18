@@ -13,38 +13,32 @@ Block2::Block2(BlockBoard& blockBoardRef) noexcept
 
 const bool Block2::isRotationPossible() const noexcept
 {
-	if (blockArray_.at(0).getPosition().y == GRID
-		or blockArray_.at(0).getPosition().y == 2 * GRID)
+	if (blockArray_.at(1).getPosition().y == GRID
+		or blockArray_.at(1).getPosition().y == 2 * GRID)
 	{
 		return false;
 	}
-	else if (currentPosition_ == TwoBlockPositions::Horizontal)
+	int newX{ 0 };
+	int newY{ 0 };
+	std::vector<std::pair<float, float>> newCoords;
+	for (const auto& el : blockArray_)
 	{
-		if (blockArray_.at(0).getPosition().y != GRID * NUMBER_OF_ROWS
-			/*and blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS - GRID
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) - 1) == sf::Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 1) == sf::Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1)).at(gridToY(1) + 2) == sf::Color::White*/)
-		{
-			return true;
-		}
-		else return false;
+		newX = blockArray_.at(1).getPosition().x + blockArray_.at(1).getPosition().y - el.getPosition().y;
+		newY = blockArray_.at(1).getPosition().y - blockArray_.at(1).getPosition().x + el.getPosition().x;
+		newCoords.push_back({ newX, newY });
 	}
-	else if (currentPosition_ == TwoBlockPositions::Vertical)
+	for (auto& el : newCoords)
 	{
-		if (blockArray_.at(1).getPosition().x > GRID
-			and blockArray_.at(1).getPosition().x < GRID * NUMBER_OF_COLUMNS - GRID
-			and blockArray_.at(1).getPosition().y > GRID
-			and blockArray_.at(1).getPosition().y < GRID * NUMBER_OF_ROWS - GRID
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) - 1).at(gridToY(1)) == sf::Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 1).at(gridToY(1)) == sf::Color::White
-			and blockBoardRef_.getBoardArrayRef().at(gridToX(1) + 2).at(gridToY(1)) == sf::Color::White)
+		if (el.first < GRID
+			or el.first > GRID * NUMBER_OF_COLUMNS
+			or el.second < GRID
+			or el.second > GRID * NUMBER_OF_ROWS
+			or blockBoardRef_.getBoardArrayRef().at(gridToX(el.first)).at(gridToY(el.second)) != sf::Color::White)
 		{
-			return true;
+			return false;
 		}
-		else return false;
 	}
-	else return false;
+	return true;
 }
 
 void Block2::rotate() noexcept
@@ -59,20 +53,5 @@ void Block2::rotate() noexcept
 			newY = blockArray_.at(1).getPosition().y - blockArray_.at(1).getPosition().x + el.getPosition().x;
 			el.setPosition(newX, newY);
 		}
-		
-		/*if (currentPosition_ == TwoBlockPositions::Horizontal)
-		{
-			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x + GRID, blockArray_.at(0).getPosition().y - GRID);
-			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x - GRID, blockArray_.at(2).getPosition().y + GRID);
-			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x - 2 * GRID, blockArray_.at(3).getPosition().y + 2 * GRID);
-			currentPosition_ = TwoBlockPositions::Vertical;
-		}
-		else if (currentPosition_ == TwoBlockPositions::Vertical)
-		{
-			blockArray_.at(0).setPosition(blockArray_.at(0).getPosition().x - GRID, blockArray_.at(0).getPosition().y + GRID);
-			blockArray_.at(2).setPosition(blockArray_.at(2).getPosition().x + GRID, blockArray_.at(2).getPosition().y - GRID);
-			blockArray_.at(3).setPosition(blockArray_.at(3).getPosition().x + 2 * GRID, blockArray_.at(3).getPosition().y - 2 * GRID);
-			currentPosition_ = TwoBlockPositions::Horizontal;
-		}*/
 	}
 }
