@@ -36,8 +36,8 @@ void BaseBlock::rotate() noexcept
 {
 	if (isRotationPossible())
 	{
-		int newX{ 0 };
-		int newY{ 0 };
+		float newX{ 0 };
+		float newY{ 0 };
 		for (auto& el : blockArray_)
 		{
 			newX = blockArray_.at(1).getPosition().x + blockArray_.at(1).getPosition().y - el.getPosition().y;
@@ -47,7 +47,7 @@ void BaseBlock::rotate() noexcept
 	}
 }
 
-bool BaseBlock::isFallingPossible() noexcept
+const bool BaseBlock::isFallingPossible() const noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -66,7 +66,7 @@ bool BaseBlock::isFallingPossible() noexcept
 	return true;
 }
 
-bool BaseBlock::isMoveRightPossible() noexcept
+const bool BaseBlock::isMoveRightPossible() const noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -84,7 +84,7 @@ bool BaseBlock::isMoveRightPossible() noexcept
 	return true;
 }
 
-bool BaseBlock::isMoveLeftPossible() noexcept
+const bool BaseBlock::isMoveLeftPossible() const noexcept
 {
 	auto blockCoords = getCoords();
 	auto newCoords{ blockCoords };
@@ -104,8 +104,8 @@ bool BaseBlock::isMoveLeftPossible() noexcept
 
 const bool BaseBlock::isRotationPossible() const noexcept
 {
-	int newX{ 0 };
-	int newY{ 0 };
+	float newX{ 0 };
+	float newY{ 0 };
 	std::vector<std::pair<float, float>> newCoords;
 	for (const auto& el : blockArray_)
 	{
@@ -127,22 +127,19 @@ const bool BaseBlock::isRotationPossible() const noexcept
 	return true;
 }
 
-bool BaseBlock::checkIfLost() const noexcept
+const bool BaseBlock::checkIfLost() const noexcept
 {
 	bool isAtTopLine = false;
 	bool isOccupied = false;
 	for (uint8_t i = 0; i < 4; i++)
 	{
-		if (blockArray_.at(i).getPosition().y == GRID)
+		if (blockArray_.at(i).getPosition().y == GRID
+			and blockBoardRef_.getBoardArrayRef().at(gridToX(i)).at(gridToY(i)) != sf::Color::White)
 		{
-			isAtTopLine = true;
-		}
-		if (blockBoardRef_.getBoardArrayRef().at(gridToX(i)).at(gridToY(i)) != sf::Color::White)
-		{
-			isOccupied = true;
+			return true;
 		}
 	}
-	return(isAtTopLine and isOccupied);
+	return false;
 }
 
 void BaseBlock::setColor(const sf::Color& color) noexcept
@@ -163,7 +160,7 @@ void BaseBlock::setColorsInBlockBoard() const noexcept
 	}
 }
 
-std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
+const std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
 {
 	std::vector<std::pair<float, float>> blockCoords;
 	for (uint8_t i = 0; i < 4; i++)
@@ -173,7 +170,7 @@ std::vector<std::pair<float, float>> BaseBlock::getCoords() const noexcept
 	return blockCoords;
 }
 
-void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& blockCoords, std::vector<std::pair<float, float>>& newCoords) noexcept
+void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& blockCoords, std::vector<std::pair<float, float>>& newCoords) const noexcept
 {
 	for (auto It = begin(newCoords); It != end(newCoords); It++)
 	{
@@ -185,7 +182,7 @@ void BaseBlock::extractAdjacentCoords(std::vector<std::pair<float, float>>& bloc
 	}
 }
 
-int BaseBlock::gridToX(const float& blockNumber) const noexcept
+const int BaseBlock::gridToX(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{
@@ -194,7 +191,7 @@ int BaseBlock::gridToX(const float& blockNumber) const noexcept
 	else return static_cast<int>((blockNumber - GRID) / GRID);
 }
 
-int BaseBlock::gridToY(const float& blockNumber) const noexcept
+const int BaseBlock::gridToY(const float& blockNumber) const noexcept
 {
 	if (blockNumber >= 0 and blockNumber < 5)
 	{
