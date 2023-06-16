@@ -19,6 +19,7 @@ int main()
 	BlockBoard blockBoard{ scoreCounter };
 	std::random_device rd;
 	std::unique_ptr<BaseBlock> ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
+	sf::Clock clock;
 
 	while (true)
 	{
@@ -56,13 +57,16 @@ int main()
 					return 0;
 				}
 			}
-			blockBoard.handleFilledRows();
 			ptrToBlock = drawBoard(band, blockBoard, scoreCounter, window, std::move(ptrToBlock));
 			window.display();
-			sf::sleep(sf::milliseconds(GAME_SPEED));
 			if (ptrToBlock->isFallingPossible())
 			{
-				ptrToBlock->fall();
+				if (clock.getElapsedTime() >= sf::milliseconds(GAME_SPEED))
+				{
+					ptrToBlock->fall();
+					blockBoard.handleFilledRows();
+					clock.restart();
+				}
 			}
 			else
 			{
