@@ -2,6 +2,7 @@
 #include "BlockCreator.hpp"
 #include "BaseBlock.hpp"
 #include "EndgameText.hpp"
+#include "StartgameText.hpp"
 
 std::unique_ptr<BaseBlock> drawBoard(const Band& band, BlockBoard& blockBoardRef, const ScoreCounter& scoreCounter, sf::RenderWindow& window, std::unique_ptr<BaseBlock> ptrToBlock = nullptr) noexcept;
 void resetGame(GameStatus& gameStatus, BlockBoard& blockBoard, ScoreCounter& scoreCounter) noexcept;
@@ -14,12 +15,31 @@ int main()
 
 	GameStatus gameStatus{ GameStatus::Ongoing };
 	const Band band{ GRID, GRID };
+	const StartgameText startgameText;
 	const EndgameText endgameText;
 	ScoreCounter scoreCounter;
 	BlockBoard blockBoard{ scoreCounter };
 	std::random_device rd;
 	std::unique_ptr<BaseBlock> ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
 	sf::Clock clock;
+
+	window.clear(sf::Color::White);
+	drawBoard(band, blockBoard, scoreCounter, window);
+	window.draw(startgameText);
+	window.display();
+
+	while (window.waitEvent(event))
+	{
+		if (event.type == sf::Event::EventType::KeyPressed and event.key.code == sf::Keyboard::Enter)
+		{
+			break;
+		}
+		if (event.type == sf::Event::EventType::Closed or event.key.code == sf::Keyboard::Escape)
+		{
+			window.close();
+			return 0;
+		}
+	}
 
 	while (true)
 	{
@@ -47,6 +67,19 @@ int main()
 
 					case sf::Keyboard::Space:
 						ptrToBlock->rotate();
+						break;
+
+					case sf::Keyboard::P:
+						while (window.waitEvent(event))
+						{
+							if (event.type == sf::Event::EventType::KeyPressed and event.key.code == sf::Keyboard::P)
+							{
+								break;
+							}
+						}
+						break;
+
+					default:
 						break;
 					}
 				}
@@ -84,14 +117,14 @@ int main()
 			window.display();
 			while (window.waitEvent(event))
 			{
+				if (event.type == sf::Event::EventType::KeyPressed and event.key.code == sf::Keyboard::Space)
+				{
+					break;
+				}
 				if (event.type == sf::Event::EventType::Closed or event.key.code == sf::Keyboard::Escape)
 				{
 					window.close();
 					return 0;
-				}
-				if (event.type == sf::Event::EventType::KeyPressed and event.key.code == sf::Keyboard::Space)
-				{
-					break;
 				}
 			}
 			resetGame(gameStatus, blockBoard, scoreCounter);

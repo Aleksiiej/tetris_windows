@@ -1,5 +1,6 @@
 #pragma once
 
+#include "GlobalValues.hpp"
 #include <SFML/Graphics.hpp>
 
 class ScoreCounter : public sf::Drawable
@@ -19,4 +20,3 @@ private:
 	sf::Text text_;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const noexcept override;
 };
-

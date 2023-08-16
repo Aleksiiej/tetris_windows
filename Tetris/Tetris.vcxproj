@@ -168,6 +168,7 @@
     <ClCompile Include="BlockCreator.cpp" />
     <ClCompile Include="EndgameText.cpp" />
     <ClCompile Include="ScoreCounter.cpp" />
+    <ClCompile Include="StartGameText.cpp" />
     <ClCompile Include="Tetris.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,7 @@
     <ClInclude Include="EndgameText.hpp" />
     <ClInclude Include="GlobalValues.hpp" />
     <ClInclude Include="ScoreCounter.hpp" />
+    <ClInclude Include="StartGameText.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
