@@ -20,7 +20,7 @@ int main()
 	ScoreCounter scoreCounter;
 	BlockBoard blockBoard{ scoreCounter };
 	std::random_device rd;
-	std::unique_ptr<BaseBlock> ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
+	auto ptrToBlock = BlockCreator::createRandomBlock(blockBoard, rd);
 	sf::Clock clock;
 
 	window.clear(sf::Color::White);
@@ -103,7 +103,7 @@ int main()
 			else
 			{
 				ptrToBlock.reset(nullptr);
-				ptrToBlock = std::move(BlockCreator::createRandomBlock(blockBoard, rd));
+				ptrToBlock = BlockCreator::createRandomBlock(blockBoard, rd);
 				if (ptrToBlock->checkIfLost())
 				{
 					gameStatus = GameStatus::Lost;
