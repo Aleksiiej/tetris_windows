@@ -9,7 +9,6 @@ public:
 	ScoreCounter() noexcept;
 	ScoreCounter(const ScoreCounter& other) = delete;
 	ScoreCounter(const ScoreCounter&& other) = delete;
-	~ScoreCounter() = default;
 
 	void incrementScore() noexcept;
 	void reset() noexcept;

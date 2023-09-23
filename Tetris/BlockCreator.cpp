@@ -11,11 +11,10 @@ std::unique_ptr<BaseBlock> BlockCreator::createRandomBlock(BlockBoard& blockBoar
 {
 	std::unique_ptr<BaseBlock> createdBlock;
 	uint8_t randomNumber;
-
 	std::mt19937 rng(rd());
+
 	std::uniform_int_distribution<> distrib1(0, 6);
-	randomNumber = distrib1(rng);
-	switch (randomNumber)
+	switch (uint8_t randomNumber = distrib1(rng))
 	{
 	case 0:
 		createdBlock = std::make_unique<Block1>(blockBoardRef_);
@@ -41,8 +40,7 @@ std::unique_ptr<BaseBlock> BlockCreator::createRandomBlock(BlockBoard& blockBoar
 	}
 
 	std::uniform_int_distribution<> distrib2(0, 5);
-	randomNumber = distrib2(rng);
-	switch (randomNumber)
+	switch (randomNumber = distrib2(rng))
 	{
 	case 0:
 		createdBlock->setColor(sf::Color::Red);

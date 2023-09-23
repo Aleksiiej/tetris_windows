@@ -13,7 +13,7 @@ BlockBoard::BlockBoard(ScoreCounter& scoreCounter) noexcept : scoreCounter_(scor
 
 void BlockBoard::handleFilledRows() noexcept
 {
-	const std::vector<uint8_t> vectorOfFilledRows{ checkWhichRowsFilled() };
+	const std::vector vectorOfFilledRows{ checkWhichRowsFilled() };
 	if (!vectorOfFilledRows.empty())
 	{
 		deleteFilledRows(vectorOfFilledRows);

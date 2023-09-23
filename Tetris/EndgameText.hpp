@@ -8,7 +8,6 @@ public:
 	EndgameText() noexcept;
 	EndgameText(const EndgameText& other) = delete;
 	EndgameText(const EndgameText&& other) = delete;
-	~EndgameText() = default;
 
 private:
 	sf::Font font_;

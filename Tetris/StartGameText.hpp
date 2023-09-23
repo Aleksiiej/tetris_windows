@@ -9,7 +9,6 @@ public:
 	StartgameText() noexcept;
 	StartgameText(const StartgameText& other) = delete;
 	StartgameText(const StartgameText&& other) = delete;
-	~StartgameText() = default;
 
 private:
 	sf::Font font_;
