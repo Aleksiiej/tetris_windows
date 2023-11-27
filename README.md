@@ -28,6 +28,8 @@ This project is a modern take on the classic Tetris game, developed in C++ using
 - Install Microsoft Visual Studio and SFML on a Windows machine.
 - Clone the repository.
 - Open the project in Visual Studio, build, and run the game.
+
 OR
+
 - download folder x64
 - and run file Tetris.exe (just make sure arial.ttf is inside folder x64)
