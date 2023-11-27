@@ -13,7 +13,7 @@ This project is a modern take on the classic Tetris game, developed in C++ using
 - Classic Tetris Experience: Delivers the timeless gameplay of Tetris with a contemporary programming approach.
 
 ## Technical Stack:
-- Language: Modern C++(11, 14, 17)
+- Language: Modern C++ (11, 14, 17)
 - Graphics Library: SFML
 - Development Tool: Microsoft Visual Studio
 - Platform: Windows
