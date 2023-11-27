@@ -2,7 +2,7 @@
 
 StartgameText::StartgameText() noexcept
 {
-	font_.loadFromFile(fontFilePath);
+	font_.loadFromFile("arial.ttf");
 	text_.setFont(font_);
 	text_.setString("Welcome in Tetris!\n\n"
 		"INSTRUCTIONS:\n"
