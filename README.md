@@ -1,9 +1,10 @@
 # C++ Tetris Game Project with SFML for Windows
 ## Project Overview
 This project is a modern take on the classic Tetris game, developed in C++ using object-oriented programming. The project integrates the Simple and Fast Multimedia Library (SFML) for graphical rendering, aimed at enhancing my C++ programming skills and gaining familiarity with SFML. Designed for Windows, it offers a sleek and engaging gaming experience.
-![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/c6c9cec9-5e61-47e9-87f4-693839eb0c1d)
-![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/0b5d441d-a325-477e-8fdf-5f4e81638565)
-![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/c8a34f10-d390-4c99-8f47-3f441c09b496)
+
+![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/9bdd3e18-32e9-4a83-b469-ec6c24c916ae)
+![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/2f55e54b-0100-4452-be59-d4c1f67ff183)
+![image](https://github.com/Aleksiiej/tetris_windows/assets/94867075/53c8b25c-a74b-4c6f-b4e2-1135a16c1c38)
 
 ## Key Features:
 - Object-Oriented Design: Constructed using object-oriented programming principles in C++, promoting code cleanliness and scalability.
@@ -27,3 +28,6 @@ This project is a modern take on the classic Tetris game, developed in C++ using
 - Install Microsoft Visual Studio and SFML on a Windows machine.
 - Clone the repository.
 - Open the project in Visual Studio, build, and run the game.
+OR
+- download folder x64
+- and run file Tetris.exe (just make sure arial.ttf is inside folder x64)
